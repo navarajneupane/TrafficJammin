@@ -1,0 +1,8 @@
+# Build source #
+###################
+*.class
+*.iml
+*.project
+*.classpath
+.idea/*
+*.build
