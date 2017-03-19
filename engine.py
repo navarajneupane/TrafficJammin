@@ -21,12 +21,7 @@ def request_arrival(org, dst, arr):
     and builds a list of requests to fire at Google api
     '''
 
-    URL = 'https://maps.googleapis.com/maps/api/directions/json?' + \
-          'origin={org}&destination={dst}&arrival_time={arr}' + \
-          '&key={google_api_key}'.format(org=org,
-                                          dst=dst,
-                                          arr=arr,
-                                          google_api_key=google_api_key)
+    URL = 'https://maps.googleapis.com/maps/api/directions/json?origin={org}&destination={dst}&arrival_time={arr}&key={google_api_key}&region=nl'.format(org=org, dst=dst, arr=arr, google_api_key=google_api_key)
     return get_google(URL)
 
 
@@ -35,9 +30,7 @@ def request_departure(org, dst, dep):
     and builds a list of requests to fire at Google api
     '''
 
-    print(dep)
-
-    URL = 'https://maps.googleapis.com/maps/api/directions/json?origin={org}&destination={dst}&departure_time={dep}&key={google_api_key}&traffic_mode=pessimistic'.format(org=org, dst=dst, dep=dep,google_api_key=google_api_key)
+    URL = 'https://maps.googleapis.com/maps/api/directions/json?origin={org}&destination={dst}&departure_time={dep}&key={google_api_key}&traffic_mode=pessimistic&region=nl'.format(org=org, dst=dst, dep=dep,google_api_key=google_api_key)
 
     print URL
     return get_google(URL)
@@ -104,3 +97,25 @@ def some_function_that_wraps_everything(json_data):
 
     # Get minimum departure time
     min_travel_time = get_min_travel_time(departure_and_duration)
+
+    ontime_org = datetime.datetime.fromtimestamp(arr-base_duration)
+    ontime_org_str = str(ontime_org.hour).zfill(2) + ':' + str(ontime_org.minute).zfill(2)
+    ontime_dst = datetime.datetime.fromtimestamp(arr)
+    ontime_dst_str = str(ontime_dst.hour).zfill(2) + ':' + str(ontime_dst.minute).zfill(2)
+    ontime_duration = int(base_duration/60)
+
+    best_org = datetime.datetime.fromtimestamp(min_travel_time[0])
+    best_org_str = str(best_org.hour).zfill(2) + ':' + str(best_org.minute).zfill(2)
+    best_dst = datetime.datetime.fromtimestamp(min_travel_time[0] + min_travel_time[1])
+    best_dst_str = str(best_dst.hour).zfill(2) + ':' + str(best_dst.minute).zfill(2)
+    best_duration = int(min_travel_time[1]/60)
+
+    output_dict = {'dst': dst,
+                    'ontime_org':  ontime_org_str,
+                    'ontime_dst': ontime_dst_str,
+                    'ontime_duration': ontime_duration,
+                    'best_org': best_org_str,
+                    'best_dst': best_dst_str,
+                    'best_duration': best_duration}
+
+    return output_dict
