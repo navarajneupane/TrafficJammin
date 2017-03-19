@@ -1,6 +1,9 @@
 import json
 from pprint import pprint
-
+import datetime
+import time
+ 
+now_plus_10 = now + datetime.timedelta(minutes = -10)
 JSON_DATA = {
   "geocoded_waypoints": [
     {
@@ -304,6 +307,32 @@ JSON_DATA = {
   ],
   "status": "OK"
 }
+ARRIVAL_TIME = datetime.datetime.now() #This should be user input
+def get_duration(json_data):
+	json_data = get_json_data()
+	return json_data["routes"][0]["legs"][0]["duration"]["text"] #14 mins
+	
+def get_departure_duration_times(arrival_time, tolerance_time):
+	departure_times = []
+	best_duration = get_duration()
+	best_departure_time = ARRIVAL_TIME -  datetime.timedelta(minutes =best_duration)
+	departure_times = [best_departure_time]
 
-def get_duration(self):
-	return JSON_DATA["routes"][0]["legs"][0]["duration"]["text"] #14 mins
+	tolerance_factor = tolerance_time/10
+	
+	for t in range(0, tolerance_factor):
+		departure_times.append(best_departure_time - datetime.timedelta(minutes =(t+1)*10))
+		departure_times.append(best_departure_time + datetime.timedelta(minutes =(t+1)*10))
+	
+	departure_and_duration = {}
+	for d in range(0, len(departure_times)):
+		json_data = request_departure(org, dest, departure_times[d])
+		departure_and_duration.update(departure_times[d], get_duration(json_data))
+	
+	
+	return departure_and_duration
+
+def get_json_data(arrival_time):
+	unix_time = time.mktime(datetime.datetime.strptime(arrival_time, "%d/%m/%Y").timetuple())
+	json_data = request_from_google()
+
