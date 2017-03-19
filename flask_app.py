@@ -1,8 +1,8 @@
 from flask import Flask, request, Response
 from os import environ
 import json
-from some_script import functions
 import time
+import datetime
 
 app = Flask(__name__)
 app.debug = True
@@ -10,7 +10,7 @@ app.debug = True
 
 def parse_input(json_data):
     # Parse arrival time
-    arr = time.json_data['arr']
+    arr = json_data['arr']
     arr = datetime.datetime(2017, 3, 20, int(arr[:2]), int(arr[-2:]))
     arr = int(time.mktime(arr.timetuple()))
     json_data['arr'] = arr
@@ -20,11 +20,11 @@ def parse_input(json_data):
 @app.route('/api/fastRoute', methods=['POST'])
 def find_fastest_route():
     input_json = request.get_json(force=True)
-    '''json_in = {'arr': '09:00',
-                  'org': 'Eindhoven',
-                  'dst': 'Veldhoven',
-                  'tolerance': [-38, 14],
-                  'active_days': [True, True, True, True, True, False, False]}
+    '''json_in = {"arr": "09:00",
+                    "org": "Eindhoven",
+                    "dst": "Veldhoven",
+                    "tolerance": [-38, 14],
+                    "active_days": [true, true, true, true, true, false, false]}
     '''
 
     # Parse input
