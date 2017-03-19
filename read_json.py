@@ -2,8 +2,12 @@ import json
 from pprint import pprint
 import datetime
 import time
+<<<<<<< HEAD
 import numpy as np
  
+=======
+
+>>>>>>> 5b2f06869bcd489b1bfcd2ad4a77ea9ac5ae9a16
 now_plus_10 = now + datetime.timedelta(minutes = -10)
 JSON_DATA = {
   "geocoded_waypoints": [
@@ -36,7 +40,7 @@ JSON_DATA = {
           "lng": 5.403431400000001
         }
       },
-      "copyrights": "Map data ©2017 Google",
+      "copyrights": "Map data ï¿½2017 Google",
       "legs": [
         {
           "distance": {
@@ -312,7 +316,7 @@ ARRIVAL_TIME = datetime.datetime.now() #This should be user input
 def get_duration(json_data):
 	json_data = get_json_data()
 	return json_data["routes"][0]["legs"][0]["duration"]["text"] #14 mins
-	
+
 def get_departure_duration_times(arrival_time, tolerance_time):
 	departure_times = []
 	best_duration = get_duration()
@@ -320,22 +324,17 @@ def get_departure_duration_times(arrival_time, tolerance_time):
 	departure_times = [best_departure_time]
 
 	tolerance_factor = tolerance_time/10
-	
+
 	for t in range(0, tolerance_factor):
 		departure_times.append(best_departure_time - datetime.timedelta(minutes =(t+1)*10))
 		departure_times.append(best_departure_time + datetime.timedelta(minutes =(t+1)*10))
-	
+
 	departure_and_duration = {}
 	for d in range(0, len(departure_times)):
 		json_data = request_departure(org, dest, departure_times[d])
 		departure_and_duration.update(departure_times[d], get_duration(json_data))
-	
-	
-	return departure_and_duration
 
-def get_json_data(arrival_time):
-	unix_time = time.mktime(datetime.datetime.strptime(arrival_time, "%d/%m/%Y").timetuple())
-	json_data = request_from_google()
+
 
 def gef get_min_travel_time(departure_and_duration):
 	sorted_dict = sorted(departure_and_duration.iteritems(), key=operator.itemgetter(1)) #Sort dictionary based on values
@@ -354,3 +353,10 @@ print(array)
 value = 0.5
 
 print(find_nearest(array, value))
+
+    return departure_and_duration
+
+def get_json_data(arrival_time):
+    unix_time = time.mktime(datetime.datetime.strptime(arrival_time, "%d/%m/%Y").timetuple())
+    json_data = request_from_google()
+
