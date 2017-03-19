@@ -1,14 +1,12 @@
 from flask import Flask, request, Response
+from flask.ext.cors import CORS, cross_origin
 from os import environ
 import json
 import time
 import datetime
-from flask.ext.cors import CORS, cross_origin
 
 app = Flask(__name__)
 app.debug = True
-
-app = Flask(__name__)
 app.config['SECRET_KEY'] = 'the quick brown fox jumps over the lazy   dog'
 app.config['CORS_HEADERS'] = 'Content-Type'
 
@@ -28,19 +26,19 @@ def parse_input(json_data):
 @app.route('/api/fastRoute', methods=['POST'])
 @cross_origin(origin='localhost', headers=['Content- Type', 'Authorization'])
 def find_fastest_route():
-    input_json = request.get_json(force=True)
     '''json_in = {"arr": "09:00",
                     "org": "Eindhoven",
                     "dst": "Veldhoven",
-                    "tolerance": [-38, 14],
+                    "tolerance": [15],
                     "active_days": [true, true, true, true, true, false, false]}
     '''
+    input_json = request.get_json(force=True)
 
     # Parse input
     json_data = parse_input(input_json)
 
-    # Parse for output
-    output = json_data
+    # DO THE MAGIC
+    output = some_function_that_wraps_everything(json_data)
 
     # Return output
     return json.dumps(output)
