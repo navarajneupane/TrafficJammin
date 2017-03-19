@@ -2,7 +2,12 @@ import json
 from pprint import pprint
 import datetime
 import time
+<<<<<<< HEAD
+import numpy as np
+ 
+=======
 
+>>>>>>> 5b2f06869bcd489b1bfcd2ad4a77ea9ac5ae9a16
 now_plus_10 = now + datetime.timedelta(minutes = -10)
 JSON_DATA = {
   "geocoded_waypoints": [
@@ -330,8 +335,28 @@ def get_departure_duration_times(arrival_time, tolerance_time):
 		departure_and_duration.update(departure_times[d], get_duration(json_data))
 
 
+
+def gef get_min_travel_time(departure_and_duration):
+	sorted_dict = sorted(departure_and_duration.iteritems(), key=operator.itemgetter(1)) #Sort dictionary based on values
+	return sorted_dict[0]	
+	
+	
+def get_nearest(departure_and_duration, array, value):
+    idx = (np.abs(array-value)).argmin()
+    return array[idx]
+
+array = np.random.random(10)
+print(array)
+# [ 0.21069679  0.61290182  0.63425412  0.84635244  0.91599191  0.00213826
+#   0.17104965  0.56874386  0.57319379  0.28719469]
+
+value = 0.5
+
+print(find_nearest(array, value))
+
     return departure_and_duration
 
 def get_json_data(arrival_time):
     unix_time = time.mktime(datetime.datetime.strptime(arrival_time, "%d/%m/%Y").timetuple())
     json_data = request_from_google()
+
