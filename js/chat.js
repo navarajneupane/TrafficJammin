@@ -2,6 +2,7 @@
 $(document).ready(function() {
 
 	var newDate = {
+		org: "Rotterdam Station",
 		dst: "Eindhoven Station",
 		ontime_org: "8:30",
 		ontime_dst: "9:00",
@@ -11,7 +12,8 @@ $(document).ready(function() {
 		best_duration: 20
 	};
 
-	var dst = newDate.dst,
+	var org = newDate.org,
+		dst = newDate.dst,
 		ontime_org = newDate.ontime_org,
 		ontime_dst = newDate.ontime_dst,
 		ontime_duration = newDate.ontime_duration,
@@ -27,7 +29,7 @@ $(document).ready(function() {
 	setTimeout(function() {
 		$(".chat-container").append('<p class="bot small">You can do this:</p>')
 	}, 3000);
-
+		
 	setTimeout(function() {
 		$(".chat-container").append('<p class="bot small">Leave around ' +
 		'<span id="ontime-org" class="suggest">' + ontime_org + '</span> to get there at ' +
@@ -49,5 +51,16 @@ $(document).ready(function() {
 			$(".green-underline").css("width", duration_ratio + "%");
 		}, 100);
 	}, 8000);
+
+	setTimeout(function() {
+		var query_dst = dst.replace(" ", "+");
+		var query_org = org.replace(" ", "+");
+
+		$(".chat-container").append('<p class="bot small">Here is the Google Maps link: ' +
+		'<br>' +
+		' <a href="https://www.google.nl/maps/dir/'+ query_org +'/'+ query_dst +'" target="_blank">Google Maps</a></p> ')
+	}, 10000);
+
+
 
 });
