@@ -7,7 +7,7 @@ $(document).ready(function() {
         $(this).attr("value", inputDate)
     });
 
-// TOLERANCE – SLIDER 
+// TOLERANCE – SLIDER
 	$( function() {
 		$( "#slider-tolerance" ).slider({
 			range: "min",
