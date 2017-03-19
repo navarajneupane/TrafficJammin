@@ -2,6 +2,7 @@ import json
 from pprint import pprint
 import datetime
 import time
+import numpy as np
  
 now_plus_10 = now + datetime.timedelta(minutes = -10)
 JSON_DATA = {
@@ -336,3 +337,20 @@ def get_json_data(arrival_time):
 	unix_time = time.mktime(datetime.datetime.strptime(arrival_time, "%d/%m/%Y").timetuple())
 	json_data = request_from_google()
 
+def gef get_min_travel_time(departure_and_duration):
+	sorted_dict = sorted(departure_and_duration.iteritems(), key=operator.itemgetter(1)) #Sort dictionary based on values
+	return sorted_dict[0]	
+	
+	
+def get_nearest(departure_and_duration, array, value):
+    idx = (np.abs(array-value)).argmin()
+    return array[idx]
+
+array = np.random.random(10)
+print(array)
+# [ 0.21069679  0.61290182  0.63425412  0.84635244  0.91599191  0.00213826
+#   0.17104965  0.56874386  0.57319379  0.28719469]
+
+value = 0.5
+
+print(find_nearest(array, value))
