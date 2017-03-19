@@ -7,7 +7,7 @@ $(document).ready(function() {
         $(this).attr("value", inputDate)
     });
 
-// TOLERANCE – SLIDER 
+// TOLERANCE – SLIDER
 	$( function() {
 		$( "#slider-tolerance" ).slider({
 			range: true,
@@ -47,7 +47,7 @@ $(document).ready(function() {
 		console.log(data);
 		// construct an HTTP request
 		var xhr = new XMLHttpRequest();
-		xhr.open("post", "localhost:5555/api/fastRoute", true);
+		xhr.open("post", "http://localhost:5555/api/fastRoute", true);
 		xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
 
 		// send the collected data as JSON
