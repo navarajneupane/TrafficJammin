@@ -20,12 +20,18 @@ def parse_input(json_data):
 @app.route('/api/fastRoute', methods=['POST'])
 def find_fastest_route():
     input_json = request.get_json(force=True)
+    '''json_in = {'arr': '09:00',
+                  'org': 'Eindhoven',
+                  'dst': 'Veldhoven',
+                  'tolerance': [-38, 14],
+                  'active_days': [True, True, True, True, True, False, False]}
+    '''
 
     # Parse input
     json_data = parse_input(input_json)
 
     # Parse for output
-    output = {}
+    output = json_data
 
     # Return output
     return json.dumps(output)
