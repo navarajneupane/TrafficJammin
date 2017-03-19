@@ -2,17 +2,27 @@ from flask import Flask, request, Response
 from os import environ
 import json
 from some_script import functions
+import time
 
 app = Flask(__name__)
 app.debug = True
+
+
+def parse_input(json_data):
+    # Parse arrival time
+    arr = time.json_data['arr']
+    arr = datetime.datetime(2017, 3, 20, int(arr[:2]), int(arr[-2:]))
+    arr = int(time.mktime(arr.timetuple()))
+    json_data['arr'] = arr
+
+    return json_data
 
 @app.route('/api/fastRoute', methods=['POST'])
 def find_fastest_route():
     input_json = request.get_json(force=True)
 
     # Parse input
-
-    # Feed to function that returns options
+    json_data = parse_input(input_json)
 
     # Parse for output
     output = {}
