@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Traffic Jammin</title>
+
+	<link href="https://fonts.googleapis.com/css?family=Rubik:700italic|Roboto:300,400,500,600" rel="stylesheet">
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="js/script.js"></script>
+</head>
+<body>
+
+	<header>
+		<div class="left">
+			<a><span class="arrow-back"></span></a>
+			<h2 class="home-title">Gianluca</h2>
+		</div>
+		<div class="right">
+			<span class="options">&#133;</span>
+		</div>
+	</header>
+
+	<div class="logo-box">
+		<h1 class="logo">Traffic<br>Jammin'</h1>
+	</div>
+
+	<div class="login-box">
+		<input type="text" name="text" placeholder="email">
+		<button class="">Sign in</button>
+		<p class="small">Don't have an account yet? <a href="">Sign in</a></p>
+	</div>
+
+	<button class="add-new"><span>+</span></button>
+
+	<div class="new-trip">
+		<ul class="features">
+			<li class="feature arrival-time-box">
+				<label for="arrival-time">Arrival time</label>
+				<div class="time-container">
+					<input type="time" id="arrival-time" value="09:00">
+				</div>
+			</li>
+			<li class="feature origin-location-box">
+				<label for="origin-location">From</label>
+				<input type="text" id="origin-location" placeholder="Set an origin">
+			</li>
+			<li class="feature destination-location-box">
+				<label for="destination-location">To</label>
+				<input type="text" id="destination-location" placeholder="Set a destination">				
+			</li>
+			<li class="feature tolerance-box">
+				<label for="tolerance">Tolerance</label>
+				<div id="tolerance">
+					<input type="text" id="tolerance-min" readonly">
+					<input type="text" id="tolerance-max" readonly">
+				</div>
+				<div id="slider-tolerance"></div>
+				
+			</li>
+			<li class="feature days-box">
+				<label for="days">Active days</label>
+				<ul id="days">
+					<li class="mon">M</li>
+					<li class="tue">T</li>
+					<li class="wed">W</li>
+					<li class="thu">T</li>
+					<li class="fri">F</li>
+					<li class="sat">S</li>
+					<li class="sun">S</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+
+	<div class="chat-container">
+		<p class="user small">Hey, when shall I leave to be there around 9:30?</p>
+		<p class="bot small">You can do this:</p>
+		<p class="bot small">Leave around 9:00 to get there at 9:30 <span class="yellow-underline">30 min</span></p>
+		<p class="bot small">
+			Or leave around 8:50 to get there at 9:13 😉
+			<br>
+			<span class="green-underline">23 min</span>
+		</p>
+	</div>
+
+	<div class="stats-container">
+		<div class="daily">
+		</div>
+		<div class="weekly">
+		</div>
+		<div class="monthly">
+		</div>
+	</div>
+
+	<footer>
+		<a href="">Edit trip</a>
+		<a href="">See stats</a>
+	</footer>
+
+</body>
+</html>
